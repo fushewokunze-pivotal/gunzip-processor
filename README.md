@@ -12,7 +12,8 @@ In order to install the module and run it in your Spring XD installation, you wi
 
 ## Code Tour
 
-This implements a simple custom module which simply takes a file reference (as in mode=ref option for file source module) as the ${payload} and appends values `${destinationDir}`  and gunzips the file to `${destinationDir}` using Groovy's Apache Ant AntBuilder. AntBuilder allows Ant tasks to be used with a Groovy builder-style markup. It requires that {{ant.jar}} is on your classpath. This module is designed to work with the file source module.
+This implements a simple custom module which simply takes a file reference (as in mode=ref option for file source module) as the ${payload} and a value `${destinationDir}`  then gunzips the file to `${destinationDir}` using Groovy's Apache Ant AntBuilder. 
+> AntBuilder allows Ant tasks to be used with a Groovy builder-style markup. It requires that {{ant.jar}} is on your classpath. This module is designed to work with the file source module.
 
 The example demonstrates the use of the `spring-xd-module-parent` pom to package the module.
 
