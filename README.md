@@ -12,7 +12,8 @@ In order to install the module and run it in your Spring XD installation, you wi
 
 ## Code Tour
 
-This implements a simple custom module which simply takes a file reference as the ${payload} and appends values `${destinationDir}`  and gunzips the file to ${destinationDir} using Groovy's Apache Ant AntBuilder. AntBuilder allows Ant tasks to be used with a Groovy builder-style markup. It requires that {{ant.jar}} is on your classpath. 
+This implements a simple custom module which simply takes a file reference (as in mode=ref option for file source module) as the ${payload} and appends values `${destinationDir}`  and gunzips the file to `${destinationDir}` using Groovy's Apache Ant AntBuilder. AntBuilder allows Ant tasks to be used with a Groovy builder-style markup. It requires that {{ant.jar}} is on your classpath. This module is designed to work with the file source module.
+
 The example demonstrates the use of the `spring-xd-module-parent` pom to package the module.
 
 ## Building with Maven
@@ -34,7 +35,7 @@ In this case, `spring-xd-extension-script` is a module dependency that must be p
 
 ## Using the Custom Module
 
-Copy the provided ant-1.9.6.jar and ant-launcher-1.9.6.jar to [SRINGXD_HOME]/xd/libs (it seems Spring XD is not loading these jars from the uber jar.)
+> Copy the provided ant-1.9.6.jar and ant-launcher-1.9.6.jar to [SRINGXD_HOME]/xd/libs (it seems Spring XD is not loading these jars from the uber jar.)
 
 The uber-jar will be in `[project-build-dir]/gunzip-script-processor-1.0.0.BUILD-SNAPSHOT.jar`. To install and register the module to your Spring XD distribution,
  use the `module upload` Spring XD shell command. Start Spring XD and the shell:
@@ -52,7 +53,7 @@ The uber-jar will be in `[project-build-dir]/gunzip-script-processor-1.0.0.BUILD
 	1.1.0.BUILD-SNAPSHOT | Admin Server Target: http://localhost:9393
 	Welcome to the Spring XD shell. For assistance hit TAB or type "help".
 	xd:>module upload --type processor --name gunzipper --file [path-to]/gunzip-script-processor-1.0.0.BUILD-SNAPSHOT.jar
-	Successfully uploaded module 'sink:gunzipper'
+	Successfully uploaded module 'processor:gunzipper'
 	xd:>
 
 
@@ -64,7 +65,7 @@ Now create and deploy a stream:
 You should see the stream output in the Spring XD log:
 
 
-	 [gunzip] Expanding /home/fadzi/tools/incubator-hawq/tools/bin/pythonSrc/logilab-astng-0.20.1.tar.gz to /tmp/tar/logilab-astng-0.20.1.tar
-	 [gunzip] Expanding /home/fadzi/tools/incubator-hawq/tools/bin/pythonSrc/logilab-common-0.50.1.tar.gz to /tmp/tar/logilab-common-0.50.1.tar
+	 [gunzip] Expanding /path/to/lots/of/gzfiles/logilab-astng-0.20.1.tar.gz to /tmp/tar/logilab-astng-0.20.1.tar
+	 [gunzip] Expanding /path/to/lots/of/gzfiles/pythonSrc/logilab-common-0.50.1.tar.gz to /tmp/tar/logilab-common-0.50.1.tar
 
 
